@@ -96,3 +96,5 @@ Nest is [MIT licensed](LICENSE).
       "content": "please verify your code 52",
       "channel": "email"
   }
+  
+ - Get  http://localhost:8000/messages/:channel
