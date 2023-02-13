@@ -6,7 +6,6 @@ import { Message } from './entity/message';
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
 
-  private messages: Message[] = [];
   private nextID = 0;
   increment() {
     this.nextID++;
@@ -25,14 +24,11 @@ export class MessageController {
       channel,
       createdAt: new Date(),
     };
-    this.messages.push(message);
-    return message;
+    return this.messageService.writeMessage(message);
   }
 
   @Get(':channel')
   getMessages(@Param('channel') channel: string) {
-    return this.messages
-      .filter((message) => message.channel === channel)
-      .sort((a, b) => (a > b ? 1 : -1));
+    return this.messageService.getMessages(channel);
   }
 }

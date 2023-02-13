@@ -6,9 +6,7 @@ import { Channel } from './entity/channel';
 export class Channelontroller {
   constructor(private readonly channelService: ChannelService) {}
 
-  private channels: Channel[] = [];
   private nextID = 0;
-
   increment() {
     this.nextID++;
     return this.nextID;
@@ -19,12 +17,11 @@ export class Channelontroller {
       id: this.increment(),
       name,
     };
-    this.channels.push(channel);
-    return channel;
+    return this.channelService.createChannel(channel);
   }
 
   @Get()
   getChannels() {
-    return this.channels;
+    return this.channelService.getChannels();
   }
 }
