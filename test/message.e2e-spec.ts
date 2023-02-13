@@ -18,11 +18,15 @@ describe('MessageController (e2e)', () => {
   it('/ Write Message', async () => {
     const result = await request(app.getHttpServer())
       .post('/messages')
-      .send({title: 'send code by email', content: 'please verify your code 52', channel: 'email'})
-      .then(response => response.body)
-      console.log(result); 
-      expect(201)
-      return expect(result.id).toBe(1)     
+      .send({
+        title: 'send code by email',
+        content: 'please verify your code 52',
+        channel: 'email',
+      })
+      .then((response) => response.body);
+    console.log(result);
+    expect(201);
+    return expect(result.id).toBe(1);
   });
 
   afterAll(async () => {

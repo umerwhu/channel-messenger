@@ -31,6 +31,8 @@ export class MessageController {
 
   @Get(':channel')
   getMessages(@Param('channel') channel: string) {
-    return this.messages.filter((message) => message.channel === channel);
+    return this.messages
+      .filter((message) => message.channel === channel)
+      .sort((a, b) => (a > b ? 1 : -1));
   }
 }

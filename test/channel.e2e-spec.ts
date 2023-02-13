@@ -18,11 +18,11 @@ describe('ChannelController (e2e)', () => {
   it('/ Add Channel', async () => {
     const result = await request(app.getHttpServer())
       .post('/channels')
-      .send({name: 'email'})
-      .then(response => response.body)
-      console.log(result); 
-      expect(201)
-      return expect(result.id).toBe(1)     
+      .send({ name: 'email' })
+      .then((response) => response.body);
+    console.log(result);
+    expect(201);
+    return expect(result.id).toBe(1);
   });
 
   afterAll(async () => {
