@@ -1,16 +1,12 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Increment } from '../channel/entity/increment';
 import { MessageService } from './message.service';
-import { Message } from './entity/message';
 
+const increment = new Increment();
 @Controller('messages')
 export class MessageController {
   constructor(private readonly messageService: MessageService) {}
 
-  private nextID = 0;
-  increment() {
-    this.nextID++;
-    return this.nextID;
-  }
   @Post()
   writeMessage(
     @Body('title') title: string,
@@ -18,7 +14,7 @@ export class MessageController {
     @Body('channel') channel: string,
   ) {
     const message = {
-      id: this.increment(),
+      id: increment.incrementId(),
       title,
       content,
       channel,
